@@ -58,6 +58,7 @@ public class QuestionBdd {
 			res = stat.executeQuery();
 			while (res.next()) {
 				MyQuestion myQuest = new MyQuestion();
+				//
 				
 				myQuest.setQuestionId(res.getLong("question_id"));
 				myQuest.setQuestion(res.getString("question"));
