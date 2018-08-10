@@ -14,7 +14,7 @@ import model.MyUser;
 
 public class AnswerBdd {
 	public static boolean insertAnswer(MyAnswer newAnswer) {
-
+		
 		// STATEMENT [ execute request SQL]
 		Connection connection = Utilities.openConnection();
 		if (connection == null) {
@@ -93,4 +93,34 @@ public class AnswerBdd {
 		
 		return l;
 	}
+	
+	public static MyAnswer updateAnswer(Long id) {
+		MyAnswer answertmp = new MyAnswer();
+		Connection connect = Utilities.openConnection();
+		ResultSet res = null;
+		PreparedStatement stat = null;
+//		answer_id = ((Object) res).getSession().getAnswerId();
+		try {
+			
+			String query = "UPDATE `my_answer` "
+					+ "SET `answer_id`=[value-1],`answer`=[value-2],`state`=[value-3],"
+					+ "`correct_answer`=[value-4],`repparc_id`=[value-5],`questrep_id`=[value-6] "
+					+ "WHERE answer_id=?";
+//					
+			stat = connect.prepareStatement(query);
+			
+			stat.setLong(1, id);
+			stat.executeUpdate();
+			
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			Utilities.closeConnection(connect, stat, null);
+		}
+		return answertmp;
+	}
+	
 }

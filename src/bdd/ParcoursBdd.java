@@ -13,7 +13,7 @@ import model.MyUser;
 
 public class ParcoursBdd {
 	public static long insertParcours(MyParcours newParcours) {
-
+		
 		// STATEMENT [ execute request SQL]
 		ResultSet rs;
 		long monid=0;
@@ -31,6 +31,7 @@ public class ParcoursBdd {
 			// 4 - prepare the statement
 			stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
+			//Attribution of values to statement (position of placeholder, value recovery)
 			stm.setLong(1, newParcours.getParcQuiz().getQuestionaryId());
 			stm.setInt(2, newParcours.getScore());
 			stm.setLong(3, newParcours.getTimeSpent());
@@ -57,6 +58,8 @@ public class ParcoursBdd {
 			// 7- close connection, statement, resultSet
 			Utilities.closeConnection(connection, stm, null);
 		}
+		System.out.println("new Parcours Id"+ monid);
+		//MyParcours.setParcoursId(monid);
 
 		return monid;
 	}

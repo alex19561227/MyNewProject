@@ -13,6 +13,7 @@ import bdd.ParcoursBdd;
 import bdd.QuestionaryBdd;
 import model.MyParcours;
 import model.MyQuestionary;
+import model.MySubject;
 import model.MyUser;
 
 /**
@@ -49,6 +50,7 @@ public class MyQuestionaryController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		long questionnaire = Long.parseLong(request.getParameter("choixquestionnaire"));
+		long parcId=0;
 		request.getSession().setAttribute("questionnaire", questionnaire); // set Attribut dans la session
 		System.out.println("questionaryController-1-questonary: "+questionnaire);
 		MyParcours monParcours = new MyParcours();
@@ -56,8 +58,18 @@ public class MyQuestionaryController extends HttpServlet {
 //      request.setAttribute("choixsujet", request.getParameter("choixsujet"));
 		request.getSession().setAttribute("monParcours", monParcours);
 		System.out.println("questionaryController-2-questionnaire:"+questionnaire);
+		
+		//insertParcours - ajouter le nouveau parcours à la base des données
+		Long quizId = questionnaire = Long.parseLong(request.getParameter("choixquestionnaire"));
+		//monParcours.setParcoursId(MyParcours) request.getSession().getParameter("monid"));
+		//ParcoursBdd.insertParcours(monParcours);
+		
+		
+		//Activate parcours timer
 		long debut= System.currentTimeMillis();
 		request.getSession().setAttribute("debut", debut);
+		
+		//Passe to the questionary execution
 		request.getRequestDispatcher("WEB-INF/myquestion.jsp").forward(request, response);
 		//response.sendRedirect(request.getContextPath() + "/MyQuestionController"); // permet de redirirger vers la servlet souhaitée
 	}

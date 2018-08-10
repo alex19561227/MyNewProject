@@ -18,6 +18,7 @@ import model.MyParcours;
 import model.MyQuestion;
 import model.MyQuestionary;
 import model.MySubject;
+import model.MyUser;
 
 /**
  * Servlet implementation class MyQuestionController
@@ -105,7 +106,7 @@ public class MyQuestionController extends HttpServlet {
 		request.getSession().setAttribute("subject", subject);
 		System.out.println("questionController-Score:  " + monParcours.getScore());
 		
-		//enregister le parcours dans la base de données
+		//enregister le parcours inicié dans la base de données
 		
 		
 		// monParcours.setScore(score);
