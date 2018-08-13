@@ -79,6 +79,14 @@
     <url-pattern>/myquestion</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>RecapParcoursController</servlet-name>
+    <servlet-class>controller.RecapParcoursController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RecapParcoursController</servlet-name>
+    <url-pattern>/recapparcours</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>JstlController</servlet-name>
     <servlet-class>controller.JstlController</servlet-class>
   </servlet>

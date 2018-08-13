@@ -12,8 +12,6 @@
 <body>
 	<%@include file="menu.jsp"%>
 	<% 
-	    
-	    
 		List<MySubject> subjects = SubjectBdd.viewListSubjects();
 		pageContext.setAttribute("subjects", subjects);
 		request.getSession().setAttribute("subjects", subjects);
@@ -42,6 +40,8 @@
 				<br> <br>
 			</form>
 		</div>
+	<div align="center"><br><a href="/myNewProject/recapparcours">Parcours déjà réalisés </a></div>
+	<br>
 	</div>
 	<%@include file="footer.jsp"%>
 </body>

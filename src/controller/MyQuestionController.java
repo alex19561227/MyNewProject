@@ -41,15 +41,6 @@ public class MyQuestionController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// String question = (String)
-		// request.getSession().getAttribute("questionnaire");
-		// Long l = Long.parseLong(question);
-		// List<MyQuestion> questions = QuestionBdd.viewListQuestions(l);
-		// for (int i = 0; i < questions.size(); i++) {
-		// List<MyAnswer> answers = AnswerBdd.readListResponse(questions.get(i));
-		// questions.get(i).setMesReponses((ArrayList<MyAnswer>)answers);
-		// }
-		// request.setAttribute("questions", questions);
 		long fin = System.currentTimeMillis();
 		request.setAttribute("fin", fin);
 		request.getRequestDispatcher("WEB-INF/myquestion.jsp").forward(request, response);
@@ -63,17 +54,20 @@ public class MyQuestionController extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.getSession().getAttribute("choixquestionnaire");
-		long fin= System.currentTimeMillis();
-		long debut=(long)request.getSession().getAttribute("debut");
-		List<MyParcours> ancienparcs = ParcoursBdd.viewListParcours((long)(request.getSession().getAttribute("etudiantId")));
-		for(int i=0; i<ancienparcs.size();i++) {
-			ancienparcs.get(i).setParcQuiz(QuestionaryBdd.viewQuizzId((long)(request.getSession().getAttribute("questionnaire"))));
+		long fin = System.currentTimeMillis();
+		long debut = (long) request.getSession().getAttribute("debut");
+		List<MyParcours> ancienparcs = ParcoursBdd
+				.viewListParcours((long) (request.getSession().getAttribute("etudiantId")));
+		for (int i = 0; i < ancienparcs.size(); i++) {
+			ancienparcs.get(i)
+					.setParcQuiz(QuestionaryBdd.viewQuizzId(ancienparcs.get(i).getParcQuiz().getQuestionaryId()));
 		}
-		MyParcours monParcours = (MyParcours)request.getSession().getAttribute("monParcours");
-		monParcours.setTimeSpent(fin-debut);
-		System.out.println("temps de monParcours: "+(monParcours.getTimeSpent()));
-		monParcours.setParcQuiz(QuestionaryBdd.viewQuizzId((long)(request.getSession().getAttribute("questionnaire")) ));
-		MySubject subject = SubjectBdd.viewSujet((long)(request.getSession().getAttribute("choixsujet")));
+		MyParcours monParcours = (MyParcours) request.getSession().getAttribute("monParcours");
+		monParcours.setTimeSpent(fin - debut);
+		System.out.println("temps de monParcours: " + (monParcours.getTimeSpent()));
+		monParcours
+				.setParcQuiz(QuestionaryBdd.viewQuizzId((long) (request.getSession().getAttribute("questionnaire"))));
+		MySubject subject = SubjectBdd.viewSujetId((long) (request.getSession().getAttribute("choixsujet")));
 		ArrayList<MyAnswer> listChoix = new ArrayList<MyAnswer>();
 		ArrayList<MyQuestion> questions = (ArrayList<MyQuestion>) request.getSession().getAttribute("questions");
 		for (int i = 0; i < questions.size(); i++) {
@@ -91,24 +85,19 @@ public class MyQuestionController extends HttpServlet {
 					listChoix.add(listReponses.get(j - 1));
 				else
 					System.out.println("non trouvé");
-				System.out.println("questionController-reponse choisie: "+reponseChoisie);
+				System.out.println("questionController-reponse choisie: " + reponseChoisie);
 			}
 			System.out.println("questionController-reponse choisie: " + reponseChoisie);
-			// monParcours.setListAnswers(listReponses.add());
 
-		monParcours.setListAnswers(listChoix);
-		monParcours.calculerScore();
+			monParcours.setListAnswers(listChoix);
+			monParcours.calculerScore();
 		}
 		request.getSession().setAttribute("parcours", monParcours);
 		request.getSession().setAttribute("ancienparcs", ancienparcs);
-		System.out.println("parcours Controller-Liste parc:"+ancienparcs);
+		System.out.println("parcours Controller-Liste parc:" + ancienparcs);
 		request.getSession().setAttribute("subject", subject);
 		System.out.println("questionController-Score:  " + monParcours.getScore());
-		
-		//enregister le parcours dans la base de données
-		
-		
-		// monParcours.setScore(score);
+
 		request.getRequestDispatcher("WEB-INF/myparcours.jsp").forward(request, response);
 	}
 

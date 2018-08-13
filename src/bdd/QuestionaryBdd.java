@@ -56,17 +56,12 @@ public class QuestionaryBdd {
 			stat = connect.prepareStatement(query);
 			stat.setLong(1, id);
 			res = stat.executeQuery();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		try {
 			res.next();
 			quizz.setQuestionary(res.getString(3));
 			quizz.setQuestionaryId(res.getLong(1));
 			quizz.setState(res.getBoolean(4));
 			quizz.setSubjectId(new MySubject(res.getLong(2)));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			Utilities.closeConnection(connect, stat, null);

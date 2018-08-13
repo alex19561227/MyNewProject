@@ -12,40 +12,43 @@
 
 <%
 	// 	MyParcours monParcours = (MyParcours) request.getSession().getAttribute("parcours");
-		request.getSession().getAttribute("ancienparcs");
+	request.getSession().getAttribute("ancienparcs");
 	// 	List<MyParcours> userparc = ParcoursBdd.viewListParcours((Long) request.getSession().getAttribute("etudiant"));
 	//  	pageContext.setAttribute("userparc", userparc);
 	//  	System.out.println("Liste parc:" + userparc);
 %>
-<form action="myparcours" method="post">
-	<h2>
-		<c:out value="${etudiant.lName}" />
-	</h2>
-	<h2>
-		<c:out value="${etudiant.fName}" />
-	</h2>
-	<h2>
-		<c:out value="${etudiant.userId}" />
-		<c:out value="${subject.subject}" />
-	<br>
-	<c:out value="${parcours.parcQuiz.questionary}" />
-	<br>
-	<c:out value="${parcours.score}" />
-	<br>
-	<c:out value="${parcours.timeSpent}" />
-
-	</h2>
-	<c:forEach items="${ancienparcs}" var="ancienparc">
-	<c:out value="${subject.subject}" />
-	<br>
-	<c:out value="${ancienparc.parcQuiz.questionary}" />
-	<br>
-	<c:out value="${ancienparc.score}" />
-	<br>
-	<c:out value="${ancienparc.timeSpent}" />
-	<br>
-	</c:forEach>
+<div class="panel panel-default"
+	style="width: 70%; margin: auto; padding: auto;">
+	<div class="panel-body">
+		<form action="myparcours" method="post">
+			<div class="container">
+				<table class="table table-hover">
+					<h1 align="center">Parcours validé</h1>
+					<thead>
+						<tr>
+							<th>Sujet</th>
+							<th>Questionnaire</th>
+							<th>Score</th>
+							<th>Temps passé</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><c:out value="${etudiant.lName}" /></td>
+							<td><c:out value="${etudiant.fName}" /></td>
+							<td><c:out value="${etudiant.userId}" /></td>
+							<td><c:out value="${subject.subject}" /></td>
+							<td><c:out value="${parcours.parcQuiz.questionary}" /></td>
+							<td><c:out value="${parcours.score}" /></td>
+							<td><c:out value="${parcours.timeSpent}" /></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+	</div>
+</div>
 </form>
+<div align="center"><br><a href="/myNewProject/MySubjectController">Retour à la sélection des sujets </a></div>
 <%@include file="footer.jsp"%>
 </body>
 </html>

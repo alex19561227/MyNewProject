@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.MyParcours;
+import model.MyQuestionary;
 import model.MyUser;
 
 public class ParcoursBdd {
@@ -101,16 +102,12 @@ public class ParcoursBdd {
 			stat = connect.prepareStatement(query);
 			stat.setLong(1, id);
 			res = stat.executeQuery();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		try {
 			while (res.next()) {
 				MyParcours parcours = new MyParcours();
-				parcours.setParcoursId(res.getLong("parcours_id"));
-//				parcours.setParcQuiz(res.getLong("parcquiz_id"));
-				parcours.setScore(res.getInt("score"));
-				parcours.setTimeSpent(res.getLong("time_spent"));
+				parcours.setParcoursId(res.getLong(1));
+				parcours.setParcQuiz(new MyQuestionary(false, res.getLong("parcquiz_id"), null, null));
+				parcours.setScore(res.getInt(3));
+				parcours.setTimeSpent(res.getLong(4));
 				parcoursListTemp.add(parcours);
 			}
 		} catch (SQLException e) {
