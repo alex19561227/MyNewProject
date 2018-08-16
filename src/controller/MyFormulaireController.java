@@ -58,7 +58,7 @@ public class MyFormulaireController extends HttpServlet {
 	}
 	if("".equals(erreur)) {
 		MyUser user = new MyUser(lname,fname,society,tel,email,password,date,state,role);
-		request.setAttribute("user", user);
+		request.getSession().setAttribute("user", user);
 		UserBdd.insertUser(user);
 		request.getRequestDispatcher("WEB-INF/myaccueil.jsp").forward(request, response);
 	}else {

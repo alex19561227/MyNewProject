@@ -5,7 +5,6 @@
     </div>
     <ul class="nav navbar-nav">
       <li><a href="/myNewProject/mylogin">Login</a></li>
-	<li><a href="/myNewProject/myaccueil">Accueil</a></li>
 	<li><a href="/myNewProject/myformulaire">Inscription</a></li>
     </ul>
   </div>

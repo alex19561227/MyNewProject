@@ -29,10 +29,10 @@
 	<div class="panel panel-default"
 		style="width: 70%; margin: auto; padding: auto;">
 		<div class="panel-body">
+			<h1 align="center">Liste des parcours effectués</h1>
 			<form action="recapparcours" method="post">
 				<div class="container">
 					<table class="table table-hover">
-						<h1 align="center">Liste des parcours effectués</h1>
 						<thead>
 							<tr>
 								<th>Sujet</th>
@@ -58,12 +58,13 @@
 						</tbody>
 					</table>
 					<div align="center">
-						<br> <a href="/myNewProject/MySubjectController">Choisir un sujet </a>
+						<br> <a href="/myNewProject/MySubjectController">Choisir
+							un sujet </a>
 					</div>
 					<br>
 				</div>
+			</form>
 		</div>
 	</div>
-	</form>
 </body>
 </html>

@@ -12,44 +12,56 @@
 <body>
 	<%@include file="menuadmin.jsp"%>
 	<%
-	List<MyUser> users = UserBdd.viewListUsers(request);
-	request.getSession().setAttribute("users", users);
-		
+		List<MyUser> users = UserBdd.viewValidatedUsers(request);
+		request.getSession().setAttribute("users", users);
 	%>
-	<div>
-		<h1 align="center">Liste des étudiants</h1>
-		<form action="myaccescomptes" method="post">
-			<fieldset>
-				<c:forEach items="${users}" var="user">
-					<input type="checkbox" id="state" name=${user.userId
-							}
-						value="true" /> user N°
-						<c:out value="${user.userId}" />
+	<div class="panel panel-default"
+		style="width: 70%; margin: auto; padding: auto;">
+		<div class="panel-body">
+			<h1 align="center">Liste des étudiants</h1>
+			<form action="myaccescomptes" method="post">
+				<div class="container">
+					<table class="table table-hover">
 
-					<c:out value="${user.lName}" />
-						--------------
-						<c:out value="${user.fName}" />
-						--------------
-						<c:out value="${user.society}" />
-						--------------
-						<c:out value="${user.email}" />
-						--------------
-						<c:out value="${user.password}" />
-						--------------
-						<c:out value="${user.tel}" />
-						--------------
-						<c:out value="${user.date}" />
-						--statut du compte--
-						<c:out value="${user.state}" />
-					<br>
-					<br>
-				</c:forEach>
-			</fieldset>
+						<thead>
+							<tr>
+								<th>Identifiant</th>
+								<th>Prénom</th>
+								<th>Nom</th>
+								<th>Société</th>
+								<th>Email</th>
+								<th>Mot de passe</th>
+								<th>Téléphone</th>
+								<th>Date d'inscription</th>
+								<th>Statut</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${users}" var="user">
+								<tr>
+									<td><input type="checkbox" id="state"
+										name=${user.userId
+							} value="true" /> user N° <c:out
+											value="${user.userId}" /></td>
+
+									<td><c:out value="${user.lName}" /></td>
+									<td><c:out value="${user.fName}" /></td>
+									<td><c:out value="${user.society}" /></td>
+									<td><c:out value="${user.email}" /></td>
+									<td><c:out value="${user.password}" /></td>
+									<td><c:out value="${user.tel}" /></td>
+									<td><c:out value="${user.date}" /></td>
+									<td><c:out value="${user.state}" /></td>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+
+				<button type="submit"  class="btn btn-success btn-sm">Modifier compte(s)</button>
+				<button type="reset"  class="btn btn-danger btn-sm">Reset</button>
+			</form>
+		</div>
+		<%@include file="footer.jsp"%>
 	</div>
-
-	<input type="submit" value="Modifier compte(s)" />
-	<input type="reset" value="Annulez" />
-	</form>
-	<%@include file="footer.jsp"%>
 </body>
 </html>

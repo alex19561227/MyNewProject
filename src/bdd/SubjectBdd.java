@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.MyQuestionary;
 import model.MySubject;
 
 public class SubjectBdd {
@@ -107,5 +109,54 @@ public class SubjectBdd {
 		return subjectListTemp;
 
 	}
+	
+	public static long insertSubject(MySubject newSubject) {
+
+		// STATEMENT [ execute request SQL]
+		ResultSet rs = null;
+		long monid=0;
+		Connection connection = Utilities.openConnection();
+		if (connection == null) {
+			System.out.println("Error getting connection...");
+			return -1;
+		}
+		// statement contains SQL request
+		PreparedStatement stm = null;
+		try {
+			// 3- Build SQL Request
+			String sql = "INSERT INTO my_subject" + "(subject)"
+					+ " VALUES (?)";
+			// 4 - prepare the statement
+			stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+			
+			stm.setString(1, newSubject.getSubject());
+			
+
+			// 5 - Statement (Request) Execution and result load
+			int status = stm.executeUpdate();
+
+			rs = stm.getGeneratedKeys(); // Retrieve the automatically 2
+			// generated key values in a ResultSet.
+			// Two rows are returned.
+			// Create ResultSet for query
+			
+			if (rs.next()) {
+				monid = rs.getLong(1);
+			}
+			System.out.println("Résultat de la requête d'insertion : " + monid);
+		} catch (SQLException e) {
+			/* Gérer les éventuelles erreurs ici */
+			System.out.println(" ERROR SQL insertSubject ");
+			e.printStackTrace();
+			return -1;
+		} finally {
+			// 7- close connection, statement, resultSet
+			Utilities.closeConnection(connection, stm, rs);
+		}
+
+		return monid;
+	}
+
 
 }

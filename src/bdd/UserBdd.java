@@ -22,16 +22,6 @@ public class UserBdd {
 		try {
 			
 			String query = "UPDATE my_user SET state = ? where user_id = ?";
-//					+ " lname,"
-//					+ "`fname`=[value-3],"
-//					+ "`society`=[value-4],"
-//					+ "`tel`=[value-5],"
-//					+ "`email`=[value-6],"
-//					+ "`date_creation`=[value-7],"
-//					+ "`state`=[value-8],"
-//					+ "`role`=[value-9],"
-//					+ "`password`=[value-10]"
-//					+ " WHERE 1";
 			stat = connect.prepareStatement(query);
 			stat.setBoolean(1, true);
 			stat.setLong(2, id);
@@ -40,25 +30,6 @@ public class UserBdd {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-//		try {
-//			while (res.next()) {
-//				Long userId = res.getLong("user_id");
-//				String lName = res.getString("fname");
-//				String fName = res.getString("lname");
-//				String society = res.getString("society");
-//				String tel = res.getString("TEL");
-//				String email = res.getString("EMAIL");
-//				String pswd = res.getString("PASSWORD");
-//				boolean state = res.getBoolean("STATE");
-//				Date date = res.getDate("date_creation");
-//				MyUser use = new MyUser(userId, lName, fName, society, tel, email, pswd, state, date);
-//				usertmp.add(use);
-//		return usertmp;
-//	}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		finally {
 			Utilities.closeConnection(connect, stat, null);
 		}

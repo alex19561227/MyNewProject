@@ -7,38 +7,52 @@
 <title>Accueil</title>
 </head>
 <body>
-	<!--  
-	<ul>
-		<li>Login</li>
-		<li>Accueil</li>
-		<li>Contact</li>
-	</ul>
-	Au lieu de coder le code html sr chaque page, il est possible de la placer dans un fichier JSP et l'importer
-	-->
-	<%@include file="menu.jsp"%>
+	<%@include file="menuadmin.jsp"%>
+	<%
+		request.getSession().getAttribute("admin");
+		request.getSession().getAttribute("user");
 
-
-	<h1>Bienvenue <c:out value="${user.fName}"/>,</h1>
-	
-	<fieldset>
-		<legend>INFORMATIONS:</legend>	
-		<c:out value="${user.lName}"/><br>
-		<c:out value="${user.fName}"/><br>
-		<c:out value="${user.society}"/><br>
-		<c:out value="${user.email}"/><br>
-		<c:out value="${user.tel}"/><br>
-		<c:out value="${user.date}"/><br>
 		
-	</fieldset>
-	
-	<!-- Condition Ternaire   -->
-<%-- 	Bonjour, ${! empty tab ? tab[1] : 'Aucun résultat' } --%>
-	
-	
-	<br>
-	<!-- Si tab1 n'est pas vide, afficher le tableau, sinon afficher le message  -->
-
-
+	%>
+	<div class="panel panel-success"
+		style="width: 70%; margin: auto; padding: auto;">
+		<div class="panel-heading">
+			<h1>
+				Bienvenue :
+				<c:out value="${admin.fName}" />
+				<c:out value="${user.fName}" />
+			</h1>
+		</div>
+		<div class="panel-body">
+			<fieldset>
+				<legend>INFORMATIONS:</legend>
+				Nom :
+				<c:out value="${admin.lName}" />
+				<c:out value="${user.lName}" />
+				<br>
+				Prénom :
+				<c:out value="${admin.fName}" />
+				<c:out value="${user.fName}" />
+				<br>
+				Société :
+				<c:out value="${admin.society}" />
+				<c:out value="${user.society}" />
+				<br>
+				E-mail :
+				<c:out value="${admin.email}" />
+				<c:out value="${user.email}" />
+				<br>
+				Téléphone :
+				<c:out value="${admin.tel}" />
+				<c:out value="${user.tel}" />
+				<br>
+				Date d'inscription :
+				<c:out value="${admin.date}" />
+				<c:out value="${user.date}" />
+				<br>
+			</fieldset>
+		</div>
+	</div>
 	<%@include file="footer.jsp"%>
 </body>
 </html>

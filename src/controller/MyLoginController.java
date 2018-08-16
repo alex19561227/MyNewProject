@@ -23,7 +23,6 @@ public class MyLoginController extends HttpServlet {
 		boolean resultat = false;
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
-		Boolean role = Boolean.parseBoolean(request.getParameter("role"));
 		System.out.println("loginController -login + psw: " + login + " " + password);
 
 		if ((login.length() == 0 || password.length() == 0)) {
@@ -39,10 +38,14 @@ public class MyLoginController extends HttpServlet {
 			if (user == null) {
 				request.getRequestDispatcher("WEB-INF/myformulaire.jsp").forward(request, response);
 			} else if (password.equals("admin")) {
-				request.getRequestDispatcher("WEB-INF/myaccescomptes.jsp").forward(request, response);
+				request.getSession().setAttribute("admin", user);
+				request.getSession().setAttribute("role", Boolean.parseBoolean(request.getParameter("role")));
+				System.out.println(request.getSession().getAttribute("role"));
+				request.getRequestDispatcher("WEB-INF/myaccueil.jsp").forward(request, response);
 			} else if (password.equals(login)) {
 				request.getSession().setAttribute("etudiantId", user.getUserId());
 				request.getSession().setAttribute("etudiant", user);
+				request.getSession().setAttribute("role", Boolean.parseBoolean(request.getParameter("role")));
 				System.out.println("loginController-userId: " + user.getUserId());
 				request.getRequestDispatcher("WEB-INF/mysubject.jsp").forward(request, response);
 			}

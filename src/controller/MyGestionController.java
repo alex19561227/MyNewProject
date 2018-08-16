@@ -58,7 +58,6 @@ public class MyGestionController extends HttpServlet {
 				System.out.println(etatCheckBox+"   "+users.get(i).isState());
 			}
 		}
-		//List<MyUser> users = UserBdd.viewListUsers(request);
 		request.setAttribute("users", users);
 		request.getRequestDispatcher("WEB-INF/mygestion.jsp").forward(request, response);
 		}

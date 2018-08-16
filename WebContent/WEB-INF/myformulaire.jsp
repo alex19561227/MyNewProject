@@ -8,7 +8,9 @@
 <title>Formulaire inscription</title>
 </head>
 <body>
-
+	<%
+	request.getSession().getAttribute("role");
+	%>
 
 	<h1 align="center">Formulaire d'insciption Stagiaire</h1>
 

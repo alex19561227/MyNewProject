@@ -36,7 +36,8 @@ public class MyAccesComptesController extends HttpServlet {
 		// TODO Auto-generated method stub
 		List<MyUser> users = UserBdd.viewValidatedUsers(request);
 		request.setAttribute("users", users);
-		request.getRequestDispatcher("WEB-INF/myaccescomptes.jsp").forward(request, response);	}
+		request.getRequestDispatcher("WEB-INF/myaccescomptes.jsp").forward(request, response);
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

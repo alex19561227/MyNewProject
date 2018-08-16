@@ -87,6 +87,22 @@
     <url-pattern>/recapparcours</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>CreationQuizzController</servlet-name>
+    <servlet-class>controller.CreationQuizzController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreationQuizzController</servlet-name>
+    <url-pattern>/creationquizz</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CreationQuizz2Controller</servlet-name>
+    <servlet-class>controller.CreationQuizz2Controller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreationQuizz2Controller</servlet-name>
+    <url-pattern>/creationquizz2</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>JstlController</servlet-name>
     <servlet-class>controller.JstlController</servlet-class>
   </servlet>
